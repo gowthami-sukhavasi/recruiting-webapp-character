@@ -3,10 +3,12 @@ import "./App.css";
 import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from "./consts.js";
 import Attributes from "./components/Attributes.jsx";
 import Classes from "./components/Classes.jsx";
+import DisplayClass from "./components/DisplayClass.jsx";
 
 function App() {
   const [attributeValues, setAttributeValues] = useState(attributesObj());
   const [classMatch, setClassMatch] = useState([]);
+  const [displayClass, setDisplayClass] = useState([]);
 
   useEffect(() => {
     const newClassMatch = [];
@@ -76,7 +78,17 @@ function App() {
                 handleAttributeValues={handleAttributeValues}
                 setAttributeValues={setAttributeValues}
               />
-              <Classes classMatch={classMatch} />
+              <Classes
+                classMatch={classMatch}
+                displayClass={displayClass}
+                setDisplayClass={setDisplayClass}
+              />
+              {displayClass.length !== 0 && (
+                <DisplayClass
+                  displayClass={displayClass}
+                  setDisplayClass={setDisplayClass}
+                />
+              )}
 
               <div className="skills">
                 <h1>Skills</h1>
