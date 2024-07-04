@@ -1,10 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from "./consts.js";
 import Attributes from "./components/Attributes.jsx";
+import Classes from "./components/Classes.jsx";
 
 function App() {
   const [attributeValues, setAttributeValues] = useState(attributesObj());
+  const [classMatch, setClassMatch] = useState([]);
+
+  useEffect(() => {
+    const newClassMatch = [];
+
+    Object.keys(CLASS_LIST).forEach((classlistName) => {
+      let count = 0;
+
+      Object.keys(CLASS_LIST[classlistName]).forEach((attribute) => {
+        if (
+          attributeValues[attribute] >= CLASS_LIST[classlistName][attribute]
+        ) {
+          count += 1;
+        }
+      });
+
+      if (count === 6) {
+        newClassMatch.push(classlistName);
+      }
+    });
+
+    setClassMatch((prevClassMatch) => {
+      const filteredClasses = prevClassMatch.filter((classlistName) =>
+        newClassMatch.includes(classlistName)
+      );
+      newClassMatch.forEach((classlistName) => {
+        if (!filteredClasses.includes(classlistName)) {
+          filteredClasses.push(classlistName);
+        }
+      });
+      return filteredClasses;
+    });
+  }, [attributeValues]);
 
   function attributesObj() {
     let obj = {};
@@ -12,7 +46,7 @@ function App() {
     return obj;
   }
 
-  const hanndleAttributeValues = (e, attribute) => {
+  const handleAttributeValues = (e, attribute) => {
     if (e === "+") {
       setAttributeValues((prev) => ({
         ...prev,
@@ -39,13 +73,11 @@ function App() {
             <div className="game-container">
               <Attributes
                 attributeValues={attributeValues}
-                hanndleAttributeValues={hanndleAttributeValues}
+                handleAttributeValues={handleAttributeValues}
                 setAttributeValues={setAttributeValues}
               />
+              <Classes classMatch={classMatch} />
 
-              <div className="classes">
-                <h1>Classes</h1>
-              </div>
               <div className="skills">
                 <h1>Skills</h1>
               </div>

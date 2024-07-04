@@ -1,6 +1,6 @@
 import React from "react";
 
-const Attributes = ({ attributeValues, hanndleAttributeValues }) => {
+const Attributes = ({ attributeValues, handleAttributeValues }) => {
   return (
     <div className="attributes-container">
       <h1>Attributes</h1>
@@ -10,14 +10,14 @@ const Attributes = ({ attributeValues, hanndleAttributeValues }) => {
           <p> {attributeValues[attribute]}</p>
           <button
             onClick={(e) => {
-              hanndleAttributeValues(e.target.innerText, attribute);
+              handleAttributeValues(e.target.innerText, attribute);
             }}
           >
             +
           </button>
           <button
             onClick={(e) => {
-              hanndleAttributeValues(e.target.innerText, attribute);
+              handleAttributeValues(e.target.innerText, attribute);
             }}
           >
             -
