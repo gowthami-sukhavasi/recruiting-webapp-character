@@ -5,10 +5,10 @@ const Attributes = ({ attributeValues, handleAttributeValues }) => {
     <div className="attributes-container">
       <h1>Attributes</h1>
       {Object.keys(attributeValues).map((attribute) => (
-        <div key={attribute} className="attribute">
-          <p>{attribute}:</p>
-          <p> {attributeValues[attribute]}</p>
+        <div key={attribute} className="attribute-values">
+          {attribute}: {attributeValues[attribute]} (Modifier: X)
           <button
+            className="attribute-btn"
             onClick={(e) => {
               handleAttributeValues(e.target.innerText, attribute);
             }}
@@ -16,6 +16,7 @@ const Attributes = ({ attributeValues, handleAttributeValues }) => {
             +
           </button>
           <button
+            className="attribute-btn"
             onClick={(e) => {
               handleAttributeValues(e.target.innerText, attribute);
             }}
