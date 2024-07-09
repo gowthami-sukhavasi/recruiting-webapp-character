@@ -10,7 +10,7 @@ const Classes = ({ classMatch, setDisplayClass }) => {
           <p
             className="classes-name"
             onClick={(e) => {
-              setDisplayClass(e.target.textContent);
+              setDisplayClass(classValue);
             }}
           >
             {classMatch?.includes(classValue)

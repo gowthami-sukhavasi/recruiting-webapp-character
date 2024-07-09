@@ -29,17 +29,7 @@ function App() {
       }
     });
 
-    setClassMatch((prevClassMatch) => {
-      const filteredClasses = prevClassMatch.filter((classlistName) =>
-        newClassMatch.includes(classlistName)
-      );
-      newClassMatch.forEach((classlistName) => {
-        if (!filteredClasses.includes(classlistName)) {
-          filteredClasses.push(classlistName);
-        }
-      });
-      return filteredClasses;
-    });
+    setClassMatch(newClassMatch);
   }, [attributeValues]);
 
   function attributesObj() {

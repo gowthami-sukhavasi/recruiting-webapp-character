@@ -6,7 +6,8 @@ const Attributes = ({ attributeValues, handleAttributeValues }) => {
       <h1>Attributes</h1>
       {Object.keys(attributeValues).map((attribute) => (
         <div key={attribute} className="attribute-values">
-          {attribute}: {attributeValues[attribute]} (Modifier: X)
+          {attribute}: {attributeValues[attribute]} (Modifier:
+          {Math.floor((attributeValues[attribute] - 10) / 2)})
           <button
             className="attribute-btn"
             onClick={(e) => {
